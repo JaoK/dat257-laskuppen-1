@@ -26,7 +26,7 @@ const LoginPage = (props) => {
   const [correctCredentials, setCorrectCredentials] = useState(false);
   
   const [credentials, setCredentials] = useLoginHook({
-    mail: "teacher@gmail.com",
+    mail: null,
     password: null
   });
 
@@ -57,7 +57,6 @@ const LoginPage = (props) => {
       body: JSON.stringify(credentials)
     };
 
-    console.log("SEND", requestOptions.body)
 
     fetch("/api/login", requestOptions).then(response => response.json()).then(response => {
       if (response === true) {
@@ -69,7 +68,6 @@ const LoginPage = (props) => {
       else {
         reward.punishMe();
         setWrongCredentials(true);
-       console.log(response.error);
       }
 
     })
@@ -98,7 +96,7 @@ const LoginPage = (props) => {
         </div>
 
         <div className="login-password">
-          <input name="password" type="password" onChange={setCredentials} onKeyDown={(e) => loginForm(e)} placeholder="  Lösenord:qwe123"/>
+          <input name="password" type="password" onChange={setCredentials} onKeyDown={(e) => loginForm(e)} placeholder="Lösenord"/>
         </div>
 
         <div className="login-button" >
