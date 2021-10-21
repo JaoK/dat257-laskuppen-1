@@ -23,7 +23,6 @@ const FAQPage = (props) => {
         fetch("/api/faq")
             .then((response) => response.json())
             .then((response) => {
-                console.log(response);
                 response.map((faq) => {
                     if (faq.question && faq.answer) {
                         FAQs.push(
@@ -34,7 +33,6 @@ const FAQPage = (props) => {
                     }
                 }
                 );
-                console.log("STATE", FAQs)
                 setFAQs(FAQs)
             });
     }
@@ -43,7 +41,6 @@ const FAQPage = (props) => {
         fetch("/api/session")
             .then((response) => response.json())
             .then((response) => {
-                console.log("role", response.role)
                 if (response.role == 3)
                     setIsAdmin(true);
             });
@@ -51,7 +48,6 @@ const FAQPage = (props) => {
 
     const changeAdmin = () => {
         setAdmin(!admin);
-        console.log(admin);
     }
 
     return (

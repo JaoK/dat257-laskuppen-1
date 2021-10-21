@@ -34,7 +34,6 @@ const FAQAdminQuestionComponent = (props) => {
         fetch("/api/faq", req)
             .then((response) => response.text())
             .then((response) => {
-                console.log(response);
                 props.onUpdate();
             });
     }

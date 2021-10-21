@@ -8,11 +8,9 @@ export default class ReviewPage extends React.Component {
         super();
         this.state = { book: null };
         this.setBook = this.setBook.bind(this);
-        console.log(this.state.book == null);
     }
 
     setBook(book){
-        console.log("SET BOOK PAGE",this.state.book == null)
         this.setState({book:book});
     }
 

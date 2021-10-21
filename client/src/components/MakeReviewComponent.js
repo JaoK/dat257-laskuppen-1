@@ -18,7 +18,6 @@ const MakeReviewComponent = (props) => {
 
     var reward;
     const press = () => {
-        console.log(values);
         for (let attr in values) {
             if(attr == "desc")
                 continue
@@ -47,14 +46,12 @@ const MakeReviewComponent = (props) => {
     });
 
     function submitForm(e) {
-        console.log(e)
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(values)
         };
 
-        console.log("BODY: " + JSON.stringify(values));
          fetch("/api/submitreview", requestOptions).then(response => response.json()).then(response => {
             setTimeout(()=>{handleSubmit(true)},1000);
         })

@@ -28,12 +28,10 @@ const login = (request, response) => {
         request.session.userId = result.rows[0].id;
         request.session.role = result.rows[0].roleid;
         request.session.name = result.rows[0].firstname + " " + result.rows[0].lastname;
-        console.log("SESSION SET")
 
         response.status(200).send(true);
       }
       else {
-        console.log("SESSION DESTROY")
         request.session.destroy();
         response.status(400).send(errorMsg("Wrong credentials"));
       }

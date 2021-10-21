@@ -39,12 +39,10 @@ const BooklistComponent = (props) => {
 
   //Fetches the books from DB with filters and search
   const fetchReviewBooks = () => {
-    console.log("FETCH")
     fetch("/api/reviewedbooks?filter=" + currentFilter + "&sorting=" + sorting + "&search=" + search)
       .then((response) => response.json())
       .then((response) => {
         setBooks(response);
-        console.log(response)
       });
   };
 

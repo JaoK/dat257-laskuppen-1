@@ -38,7 +38,6 @@ export default class FAQAdminComponent extends React.Component {
         fetch("/api/faq")
             .then((response) => response.json())
             .then((response) => {
-                console.log(response);
                 response.map((faq) => {
                     FAQs.push(
                         <FAQAdminQuestionComponent
@@ -50,7 +49,6 @@ export default class FAQAdminComponent extends React.Component {
                     );
                 }
                 );
-                console.log("STATE", FAQs)
                 this.setState({ FAQs })
             });
 

@@ -43,7 +43,6 @@ const rejectReview = (request, response) => {
     return;
   }
   const id = parseInt(request.params.id)
-  console.log(id);
   client.query("UPDATE Review SET status=1 WHERE id=$1", [id], (error, results) => {
     if (error) {
       response.status(500).send(errorMsg("Internal server error"));

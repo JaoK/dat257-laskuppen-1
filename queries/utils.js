@@ -18,7 +18,6 @@ function hasSession(request, response) {
         return true;
     }
     else {
-        console.log("NOT LOGGED IN")
         response.status(400).json(errorMsg("No session. Please log in."));
         return false;
     }
@@ -29,7 +28,6 @@ function isAdmin(request, response) {
         return true;
     }
     else {
-        console.log("NOT ADMIN")
         response.status(403).json(errorMsg("Forbidden."));
         return false;
     }
@@ -40,7 +38,6 @@ function isTeacher(request, response) {
         return true;
     }
     else {
-        console.log("NOT TEACHER")
         response.status(403).json(errorMsg("Forbidden."));
         return false;
     }
