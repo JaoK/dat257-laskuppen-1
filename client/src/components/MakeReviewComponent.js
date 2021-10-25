@@ -92,7 +92,7 @@ const MakeReviewComponent = (props) => {
                     <input name="pages" type='number' value={values.pages} onChange={handleChange} min={0} />
                 </div>
                 <div className="mrc-pic">
-                    <img src={values.thumbnail.thumbnail || values.thumbnail}/>
+                    <img width="128" height="192" src={values.thumbnail.thumbnail || values.thumbnail}/>
 
                 </div>
             </div>

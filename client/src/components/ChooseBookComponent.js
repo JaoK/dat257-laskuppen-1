@@ -135,7 +135,7 @@ const ChooseBookComponent = (props) => {
                         type="text"
                         onChange={updateSearch}
                         placeholder="Boktitel"
-                    />
+                    /> 
                 </div>
 
 

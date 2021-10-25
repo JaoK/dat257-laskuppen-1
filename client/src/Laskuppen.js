@@ -43,6 +43,7 @@ export default class Laskuppen extends React.Component {
                                 <div className="page-holder">
                                     <Route exact path="/toplist" render={(props) => <ToplistPage {...props} />} />
                                     <Route exact path="/makereview" render={(props) => <ReviewPage  {...props} />} />
+                                    <Route exact path="/makereview/:id" render={(props) => <ReviewPage  {...props} />} />
                                     <Route exact path="/books" render={(props) => <BooksPage {...props} />} />
                                     <Route exact path="/books/:id" render={(props) => <BooksPageDetails {...props} />} />
                                     <Route exact path="/profile" render={(props) => <ProfilePage {...props} />} />

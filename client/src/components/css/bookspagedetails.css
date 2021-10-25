@@ -31,10 +31,11 @@
   grid-template:
     "title image"
     "author image"
-    "pages image";
+    "pages image"
+    "review image";
 
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 0.4fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
 }
 
 .backButton {

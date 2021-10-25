@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useMediaQuery } from 'react-responsive';
+import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import "./css/toplistpage.css";
@@ -7,7 +8,7 @@ import "./css/toplistpage.css";
 const ToplistPage = () => {
     const [points, setPoints] = useState(0);
     const [topReaderOfWeek, settopReaderOfWeek] = useState([]);
-    const [topWeeklyBook, setTopWeeklyBook] = useState("");
+    const [topWeeklyBook, setTopWeeklyBook] = useState([]);
     const [topList, setTopList] = useState([]);
     const [recBook, setRecBook] = useState([]);
     const [filter, setFilter] = useState("points");
@@ -21,7 +22,7 @@ const ToplistPage = () => {
         let response = fetchData("/api/toplist?filter=points&order=desc")
         response.then(response => { settopReaderOfWeek(response[0]); setTopList(response) })
         response = fetchData("/api/mostreadbook")
-        response.then(response => { setTopWeeklyBook(response[0]?.title)})
+        response.then(response => { setTopWeeklyBook(response[0])})
         response = fetchData("/api/userpoints")
         response.then(response => { setPoints(response[0].points); })
         fetchRec();
@@ -57,6 +58,8 @@ const ToplistPage = () => {
       });
   }
 
+  const history = useHistory();
+
 
     return (
         <div className="main-page-general-styling">
@@ -73,10 +76,23 @@ const ToplistPage = () => {
                         </p>
                     </div>
 
+                    
+
                     <div className="top-top-book-card glassMorphism">
-                        <p className="top-card-title"> Veckans bok </p>
+                        <p className="top-card-title">Bokrekommendation</p>
                         <hr />
-                        <p className="top-card-text"> {(topWeeklyBook) ? topWeeklyBook:null} </p>
+                        
+                            {(topWeeklyBook) ? <div onClick={() => history.push('/books/' + topWeeklyBook.id)} className="top-inner-recommendation">
+                            <div className="cbc-book-title">Titel: {recBook.title}</div>
+                            <div className="cbc-book-author">Författare: {recBook.author}</div>
+                            <div className="cbc-book-pages">Sidor: {recBook.pages}</div>
+                            <div className="cbc-book-img">
+                                <img size= '1g' src={(recBook.thumbnail) ? ((recBook.thumbnail.thumbnail) ? recBook.thumbnail.thumbnail : recBook.thumbnail): "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/No_image_available_450_x_600.svg/450px-No_image_available_450_x_600.svg.png"} />
+                            </div>
+                            </div>
+
+:<div className="top-inner-recommendation"></div>}
+                        
                     </div>
 
                     <div className="top-my-points glassMorphism">
@@ -89,7 +105,7 @@ const ToplistPage = () => {
                         <p className="top-card-title">Bokrekommendation</p>
                         <hr />
                         
-                            {(recBook) ? <div className="top-inner-recommendation">
+                            {(recBook) ? <div onClick={() => history.push('/books/' + recBook.id)} className="top-inner-recommendation">
                             <div className="cbc-book-title">Titel: {recBook.title}</div>
                             <div className="cbc-book-author">Författare: {recBook.author}</div>
                             <div className="cbc-book-pages">Sidor: {recBook.pages}</div>

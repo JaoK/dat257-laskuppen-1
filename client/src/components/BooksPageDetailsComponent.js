@@ -64,8 +64,11 @@ const BooksPageDetailsComponent = (props) => {
                 <div className="title">Titel: {book.title}</div>
                 <div className="author">Författare: {book.author}</div>
                 <div className="pages">Sidantal: {book.pages}</div>
+                <div className="review-button">
+                <button type="button" onClick={() => history.push('/makereview/' + book.id)} class="btn btn-primary button-gradient">Recensera</button>
+                </div>
                 <div className="image">
-                    <img className="bpd-img" src={book.thumbnail} />
+                    <img className="bpd-img" width="128" height="192" src={book.thumbnail} />
                 </div>
                 
             </div>
