@@ -39,6 +39,66 @@ const login = (request, response) => {
   );
 }
 
+
+//Login user by mail and password matching
+const register = (request, response) => {
+
+  const mail = request.body.mail;
+  const firstName = request.body.firstName;
+  const lastName = request.body.lastName;
+  const className = request.body.className;
+  const password = request.body.password;
+  const password2 = request.body.password2;
+  var role = 1;
+  var classid = 0;
+
+  
+  if(password != password2){
+    response.status(400).send(errorMsg("Missmatch password"));
+    return;
+  }
+
+  if(mail.includes("elev.ga.ntig.se")){
+    role = 1;
+  }
+  else if(mail.includes("ntig.se")){
+    role = 2;
+    classid = 1;
+  }
+  else{
+    response.status(400).send(errorMsg("Wrong mail"));
+    return;
+  }
+
+  classes = ['IT21A','IT20A','IT19A',
+  'MA21B','MA20B','MA19B', 
+  'TE21C','TE21D','TE20C','TE20D','TE19C','TE19D', 
+  'NA21E','NA20E','NA19E', 
+  'EK21F','EK21G','EK20F','EK20G','EK19F'];
+
+  if(!classes.includes(className) && classid == 0){
+    response.status(400).send(errorMsg("Wrong class"));
+    return;
+  }else{
+    classid = classes.indexOf(className)+3;
+  }
+
+
+  client.query(
+    "INSERT INTO users (mail, firstname, lastname,classid,roleid,password) VALUES ($1,$2,$3,$4,$5,$6)",
+    [mail,firstName,lastName,classid,role,password],
+    (error, result) => {
+      if (error) {
+        response.status(500).send("Backend error (probably duplicate mail)");
+      }
+      else  { // SUCCESS REGISTER
+        response.status(200).send(true);
+      }
+      
+    }
+  );
+}
+
 const getSession = (request, response) => {
   const session = {
     login: request.session.isLoggedIn === true,
@@ -178,6 +238,7 @@ module.exports = {
   getUserPoints,
   deleteUser,
   login,
+  register,
   getSession,
   logout,
   reviewedBooks,

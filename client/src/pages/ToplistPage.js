@@ -31,7 +31,7 @@ const ToplistPage = () => {
         console.log("/api/toplist?filter=" + filter + "&order=" + order)
         let response = fetchData("/api/toplist?filter=" + filter + "&order=" + order)
         console.log(response)
-        response.then(response => { setTopList(response) })
+    response.then(response => { setTopList(response) })
     },[filter,order])
 
     const handleClick = (newFilter, newOrder) => {
@@ -69,14 +69,14 @@ const ToplistPage = () => {
                         <p className="top-card-title"> Veckans toppläsare </p>
                         <hr />
                         <p className="top-card-text">
-                            {topReaderOfWeek.name} : {topReaderOfWeek.points}
+                           {(topReaderOfWeek) ? topReaderOfWeek.name +':'+ topReaderOfWeek.points : null}
                         </p>
                     </div>
 
                     <div className="top-top-book-card glassMorphism">
                         <p className="top-card-title"> Veckans bok </p>
                         <hr />
-                        <p className="top-card-text"> {topWeeklyBook} </p>
+                        <p className="top-card-text"> {(topWeeklyBook) ? topWeeklyBook:null} </p>
                     </div>
 
                     <div className="top-my-points glassMorphism">
@@ -88,14 +88,18 @@ const ToplistPage = () => {
                     <div className="top-my-recommendation glassMorphism">
                         <p className="top-card-title">Bokrekommendation</p>
                         <hr />
-                        <div className="top-inner-recommendation">
+                        
+                            {(recBook) ? <div className="top-inner-recommendation">
                             <div className="cbc-book-title">Titel: {recBook.title}</div>
                             <div className="cbc-book-author">Författare: {recBook.author}</div>
                             <div className="cbc-book-pages">Sidor: {recBook.pages}</div>
                             <div className="cbc-book-img">
                                 <img size= '1g' src={(recBook.thumbnail) ? ((recBook.thumbnail.thumbnail) ? recBook.thumbnail.thumbnail : recBook.thumbnail): "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/No_image_available_450_x_600.svg/450px-No_image_available_450_x_600.svg.png"} />
                             </div>
-                        </div>
+                            </div>
+
+:<div className="top-inner-recommendation"></div>}
+                        
                     </div>
 
                     <div className="top-top-lists glassMorphism">

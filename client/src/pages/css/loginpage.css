@@ -86,6 +86,8 @@
     height: 40%;
 }
 
+
+
 .login-password{
     grid-area: password;
     justify-self: center;
@@ -109,3 +111,92 @@
     outline: none;
     border: none;
 }
+
+
+
+.register-box{
+    grid-area: loginbox;
+    justify-self: center;
+    align-self: start;
+    height: 90%;
+    width: 80%;
+
+    display: grid;
+    grid-template-areas: 
+    "ruser"
+    "rfirstName"
+    "rlastName"
+    "rclassName"
+    "rpassword"
+    "rpassword2"
+    "rbutton";
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    padding-top: 1em;
+}   
+
+.register-user{
+    grid-area: ruser;
+    justify-self: center;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    height: 90%;
+}
+.register-firstName{
+    grid-area: rfirstName;
+    justify-self: center;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    height: 90%;
+
+}
+.register-lastName{
+    grid-area: rlastName;
+    justify-self: center;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    height: 90%;
+}
+.register-className{
+    grid-area: rclassName;
+    justify-self: center;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    height: 90%;
+}
+.register-password{
+    grid-area: rpassword;
+    justify-self: center;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    height: 90%;
+}
+.register-password2{
+    grid-area: rpassword2;
+    justify-self: center;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    height: 90%;
+}
+.register-button{
+    grid-area: rbutton;
+    justify-self: center;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    height: 90%;
+}
+

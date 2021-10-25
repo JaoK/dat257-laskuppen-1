@@ -57,6 +57,7 @@ app.use(session({
 
   // Other
   app.post('/api/login', db.login)
+  app.post('/api/register', db.register)
   app.get('/api/users', db.getUsers)
   app.get('/api/session', db.getSession)
   app.get('/api/logout', db.logout)

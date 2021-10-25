@@ -42,6 +42,7 @@ const BooklistComponent = (props) => {
     fetch("/api/reviewedbooks?filter=" + currentFilter + "&sorting=" + sorting + "&search=" + search)
       .then((response) => response.json())
       .then((response) => {
+        console.log(response);
         setBooks(response);
       });
   };
