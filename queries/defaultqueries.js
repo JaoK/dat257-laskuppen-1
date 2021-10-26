@@ -80,7 +80,7 @@ const register = (request, response) => {
     response.status(400).send(errorMsg("Wrong class"));
     return;
   }else{
-    classid = classes.indexOf(className)+2;
+    classid = classes.indexOf(className.toUpperCase())+2;
   }
 
 
