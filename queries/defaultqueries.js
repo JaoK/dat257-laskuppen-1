@@ -76,11 +76,11 @@ const register = (request, response) => {
   'NA21E','NA20E','NA19E', 
   'EK21F','EK21G','EK20F','EK20G','EK19F'];
 
-  if(!classes.includes(className) && classid == 0){
+  if(!classes.includes(className.toUpperCase()) && classid == 0){
     response.status(400).send(errorMsg("Wrong class"));
     return;
   }else{
-    classid = classes.indexOf(className)+3;
+    classid = classes.indexOf(className)+2;
   }
 
 

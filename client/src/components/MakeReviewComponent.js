@@ -19,11 +19,19 @@ const MakeReviewComponent = (props) => {
     var reward;
     const press = () => {
         for (let attr in values) {
-            if(attr == "desc")
-                continue
+            
             if (values[attr] == null || values[attr] == "") { // WRONG INPUT
                 reward.punishMe();
+                setError("Fyll i alla fält");
                 return false;
+            }
+            if(attr == "review"){
+                if(values[attr].length < 200){
+                    setError("Minst 200 tecken (Du har " + values[attr].length + " tecken)");
+                    console.log(error);
+                    reward.punishMe();
+                    return false;
+                }
             }
         }
 
@@ -32,8 +40,9 @@ const MakeReviewComponent = (props) => {
 
     }
 
-    const [submitted,handleSubmit] = useState(false)
-    
+    const [submitted,handleSubmit] = useState(false);
+    const [error,setError] = useState(null);
+
     const [values, handleChange] = useFormHook({
         title: props.book.title,
         grade: null,
@@ -81,15 +90,15 @@ const MakeReviewComponent = (props) => {
             <div className="mrc-C glassMorphism">
                 <div className="mrc-title">
                     <p> Titel </p>
-                    <input name="title" type='text' value={values.title} onChange={handleChange} />
+                    <input name="title" type='text' value={values.title} disabled />
                 </div>
                 <div className="mrc-author">
                     <p> Författare </p>
-                    <input name="author" type='text' value={values.author} onChange={handleChange} />
+                    <input name="author" type='text' value={values.author} disabled />
                 </div>
                 <div className="mrc-pages">
                     <p> Sidor </p>
-                    <input name="pages" type='number' value={values.pages} onChange={handleChange} min={0} />
+                    <input name="pages" type='number' value={values.pages} min={0} disabled />
                 </div>
                 <div className="mrc-pic">
                     <img width="128" height="192" src={values.thumbnail.thumbnail || values.thumbnail}/>
@@ -102,6 +111,7 @@ const MakeReviewComponent = (props) => {
                 <Reward ref={ref => { reward = ref }} type='confetti'>
                     <button className="btn btn-success" onClick={press}>Skicka</button>
                 </Reward>
+                <span style={{'color':'red'}}>{error}</span>
             </div>
             
         </div>

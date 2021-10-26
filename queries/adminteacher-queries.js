@@ -87,7 +87,7 @@ const getReviews = (request, response) => {
     return;
   }
 
-  client.query("SELECT * FROM getReviews", (error, results) => {
+  client.query("SELECT * FROM getReviews ORDER BY status ASC", (error, results) => {
     if (error) {
       response.status(500).send(errorMsg("Internal server error"));
     }
